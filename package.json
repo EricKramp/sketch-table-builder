@@ -1,0 +1,32 @@
+{
+  "name": "table-builder",
+  "description": "",
+  "version": "0.1.0",
+  "engines": {
+    "sketch": ">=49.0"
+  },
+  "skpm": {
+    "name": "table-builder",
+    "manifest": "src/manifest.json",
+    "main": "table-builder.sketchplugin",
+    "assets": [
+      "assets/**/*"
+    ],
+    "sketch-assets-file": "sketch-assets/icons.sketch"
+  },
+  "scripts": {
+    "build": "skpm-build",
+    "watch": "skpm-build --watch",
+    "start": "skpm-build --watch --run",
+    "postinstall": "npm run build && skpm-link"
+  },
+  "devDependencies": {
+    "@skpm/builder": "^0.7.0"
+  },
+  "author": "Eric Kramp <mail@erickramp.com>",
+  "dependencies": {
+    "@skpm/dialog": "^0.2.6",
+    "@skpm/fs": "^0.2.5",
+    "papaparse": "^5.0.0"
+  }
+}

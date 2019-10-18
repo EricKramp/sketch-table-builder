@@ -1,0 +1,19 @@
+{
+  "$schema": "https://raw.githubusercontent.com/BohemianCoding/SketchAPI/develop/docs/sketch-plugin-manifest-schema.json",
+  "icon": "icon.png",
+  "homepage": "",
+  "version": "0.1",
+  "scope": "document",
+  "commands": [
+    {
+      "name": "Build Table",
+      "identifier": "table-builder.build-identifier",
+      "script": "./build-table.js"
+    }
+  ],
+  "menu": {
+    "title": "Table Builder",
+    "isRoot": true,
+    "items": ["table-builder.build-identifier"]
+  }
+}
