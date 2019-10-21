@@ -11,7 +11,6 @@ var document = sketch.getSelectedDocument();
 
 var selectedLayers = document.selectedLayers;
 var selectedCount = selectedLayers.length;
-var tileName = "tile";
 
 var csvData;
 

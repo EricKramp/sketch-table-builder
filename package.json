@@ -1,14 +1,14 @@
 {
-  "name": "table-builder",
-  "description": "",
+  "name": "sketch-table-builder",
+  "description": "Quickly and easily use a single symbol and a CSV to create a data table.",
   "version": "0.1.0",
   "engines": {
     "sketch": ">=49.0"
   },
   "skpm": {
-    "name": "table-builder",
+    "name": "sketch-table-builder",
     "manifest": "src/manifest.json",
-    "main": "table-builder.sketchplugin",
+    "main": "sketch-table-builder.sketchplugin",
     "assets": [
       "assets/**/*"
     ],
@@ -24,6 +24,10 @@
     "@skpm/builder": "^0.7.0"
   },
   "author": "Eric Kramp <mail@erickramp.com>",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:EricKramp/sketch-table-builder.git"
+  },
   "dependencies": {
     "@skpm/dialog": "^0.2.6",
     "@skpm/fs": "^0.2.5",

@@ -2,9 +2,7 @@
 
 ## Installation
 
-- [Download](../../releases/latest/download/sketch-data-merge.sketchplugin.zip) the latest release of the plugin
-- Un-zip
-- Double-click on sketch-data-merge.sketchplugin
+TBD
 
 ## Development Guide
 
