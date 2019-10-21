@@ -66,11 +66,9 @@ function createTable() {
       var label = csvData[row][col]; // change text label
 
       selectedLayers.forEach(function(layer) {
-        // console.log(layer.overrides[0].affectedLayer.name);
-        var newLayer = layer.duplicate();
+        // if we're not on the very first cell, then duplicate the first cell to create a new one
+        var newLayer = row === 0 && col === 0 ? layer : layer.duplicate();
 
-        console.log("label; " + label + ",row: " + row + ",col: " + col);
-        //why is row not 1?
         newLayer.frame.x += newLayer.frame.width * col;
         newLayer.frame.y += newLayer.frame.height * row;
 

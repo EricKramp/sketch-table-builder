@@ -1,2 +1,3 @@
 header1,header2
-cell1,cell2
+cell1,"cell2 has
+2 lines"
