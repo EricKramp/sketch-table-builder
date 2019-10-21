@@ -29,100 +29,68 @@ symbols.forEach(symbol => {
 
 console.log("pre file read");
 
-var fileCnts = fs.readFileSync(
-  dialog.showOpenDialog({
-    message: "Select Source CSV",
-    properties: ["openFile"]
-  })[0],
-  "utf8"
-);
-console.log("fileCnts: " + fileCnts);
-
-// var exportOptions = {
-//   output: dialog.showOpenDialog({
-//     message: "Select Output Directory",
-//     properties: ["openDirectory", "createDirectory"]
-//   })[0],
-//   scales: "2"
-// };
-
 /*
 
 TODO
-X fix loop
-X enable finder based import file selection
-X enable finder based file export destination
-X symbol overrides via CSV
 - match column name to override name
 - fix plugin losing document context on sketch blur event
 
 */
 
-Papa.parse(fileCnts, {
-  header: false,
-  complete: function(results) {
-    csvData = results.data;
-    console.log("finished parse! : " + csvData);
-    // exportTiles();
-  }
-});
+function loadCSV() {
+  var fileCnts = fs.readFileSync(
+    dialog.showOpenDialog({
+      message: "Select Source CSV",
+      properties: ["openFile"]
+    })[0],
+    "utf8"
+  );
+  console.log("fileCnts: " + fileCnts);
 
-function exportTiles() {
-  if (selectedCount === 0) {
-    sketch.UI.alert("Error", "⛔️ No Layers are selected");
-  } else {
-    // loop through CSV, array[0] is the headers, so skip that
-    for (var j = 1; j < csvData.length; j++) {
-      var label = csvData[j][0]; // change text label
-      var type = csvData[j][1]; // /change symbol override
+  Papa.parse(fileCnts, {
+    header: false,
+    complete: function(results) {
+      csvData = results.data;
+      console.log("finished parse! : " + csvData);
+      createTable();
+    }
+  });
+}
 
-      // the file name becomes a combination of column entries to ensure it's unique
-      var fileName = csvData[j][0] + " " + csvData[j][1];
+function createTable() {
+  // loop through CSV
+  for (var row = 0; row < csvData.length; row++) {
+    console.log("row: " + row);
+    for (var col = 0; col < csvData[row].length; col++) {
+      console.log(csvData[row][col]);
+      var label = csvData[row][col]; // change text label
 
-      // cleanup the file name
-      // https://stackoverflow.com/questions/441018/replacing-spaces-with-underscores-in-javascript
-      fileName = fileName
-        .toLowerCase()
-        .replace("/", "-")
-        .replace(/ /g, "_");
-
-      selectedLayers.forEach(function(layer, j) {
-        // Override Name, TODO match against column names
+      selectedLayers.forEach(function(layer) {
         // console.log(layer.overrides[0].affectedLayer.name);
+        var newLayer = layer.duplicate();
+
+        console.log("label; " + label + ",row: " + row + ",col: " + col);
+        //why is row not 1?
+        newLayer.frame.x += newLayer.frame.width * col;
+        newLayer.frame.y += newLayer.frame.height * row;
 
         // set the title value
-        layer.setOverrideValue(layer.overrides[0], label);
+        newLayer.setOverrideValue(newLayer.overrides[0], label);
 
-        // set the type value
-        layer.setOverrideValue(layer.overrides[1], typeSymbols[type].symbolId);
-
-        // set the layer name which sets the export file name
-        layer.name = fileName;
-
-        sketch.export(layer, exportOptions);
-
-        // remove the "@2x" suffix from the exported PNGs
-        // https://sketchplugins.com/d/929-change-name-while-exporting-layer
-        var baseFilePath = exportOptions.output + "/" + fileName;
-        // console.log( baseFilePath +'@2x.png');
-        NSFileManager.defaultManager().moveItemAtPath_toPath_error(
-          baseFilePath + "@2x.png",
-          baseFilePath + ".png",
-          nil
-        );
-
-        // reset
-        layer.name = tileName;
+        // set the newLayer name which sets the export file name
+        newLayer.name = label;
       });
     }
-
-    sketch.UI.alert(
-      "Export Complete",
-      "Check the folder you selected for export and enjoy your fresh, fresh tiles."
-    );
   }
+
+  sketch.UI.message("Finished Building Table");
 }
 
 export default function() {
-  sketch.UI.message("Running...");
+  sketch.UI.message("Running…");
+  if (selectedCount === 0) {
+    sketch.UI.alert("Error", "⛔️ No Layers are selected");
+  } else {
+    loadCSV();
+  }
 }
