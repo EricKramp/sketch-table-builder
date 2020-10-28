@@ -1,3 +1,30 @@
-header1,header2
-cell1,"cell2 has
-2 lines"
+Name,Kingdom,Phylum,Class,Order,Family
+Spotted Hyena,Animalia,Chordata,Mammalia,Carnivora,Hyaenidae
+Woolly mammoth,Animalia,Chordata,Mammalia,Proboscidea,Elephantidae
+Nine-banded armadillo,Animalia,Chordata,Mammalia,Cingulata,Dasypodidae
+Donkey,Animalia,Chordata,Mammalia,Perissodactyla,Equidae
+American bison,Animalia,Chordata,Mammalia,Artiodactyla,Bovidae
+Brown-throated sloth,Animalia,Chordata,Mammalia,Pilosa,Bradypodidae
+Dog,Animalia,Chordata,Mammalia,Carnivora,Canidae
+Eastern grey kangaroo,Animalia,Chordata,Mammalia,Diprotodontia,Macropodidae
+Goat,Animalia,Chordata,Mammalia,Artiodactyla,Bovidae
+Little Owl,Animalia,Chordata,Aves,Strigiformes,Strigidae
+Arctic hare,Animalia,Chordata,Mammalia,Lagomorpha,Leporidae
+European rabbit,Animalia,Chordata,Mammalia,Lagomorpha,Leporidae
+Roborovski hamster,Animalia,Chordata,Mammalia,Rodentia,Cricetidae
+Common bottlenose dolphin,Animalia,Chordata,Mammalia,Cetacea,Delphinidae
+Dodo,Animalia,Chordata,Aves,Columbiformes,Columbidae
+Dugong,Animalia,Chordata,Mammalia,Sirenia,Dugongidae
+Harbor seal,Animalia,Chordata,Mammalia,Carnivora,Phocidae
+Weaver ant,Animalia,Arthropoda,Insecta,Hymenoptera,Formicidae
+Giraffe,Animalia,Chordata,Mammalia,Artiodactyla,Giraffidae
+Koala,Animalia,Chordata,Mammalia,Diprotodontia,Phascolarctidae
+Llama,Animalia,Chordata,Mammalia,Artiodactyla,Camelidae
+Lion,Animalia,Chordata,Mammalia,Carnivora,Felidae
+Narwhal,Animalia,Chordata,Mammalia,Cetacea,Monodontidae
+Platypus,Animalia,Chordata,Mammalia,Monotremata,Ornithorhynchidae
+Brown Bear,Animalia,Chordata,Mammalia,Carnivora,Ursidae
+Hairy Hermit Crab,Animalia,Arthropoda,Malacostraca,Decapoda,Paguridae
+Giant Panda,Animalia,Chordata,Mammalia,Carnivora,Ursidae
+Black Rat,Animalia,Chordata,Mammalia,Rodentia,Muridae
+Alligator,Animalia,Chordata,Reptilia,Crocodylia,Alligatoridae

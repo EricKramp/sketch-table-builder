@@ -1,8 +1,16 @@
-# tileGenerator
+# Sketch Table Builder
 
 ## Installation
 
-TBD
+1. Download the latest version from the [releases](https://github.com/EricKramp/sketch-table-builder/releases) page.
+1. Double-click to install in sketch
+
+## Plugin Usage
+
+1. Select the symbol you want to use as your table "cell"
+1. Run "Build Table" from the plugins menu
+1. Select the CSV that has the data you would like to fill your table
+1. Viola!
 
 ## Development Guide
 
