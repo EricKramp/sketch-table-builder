@@ -2,7 +2,7 @@
   "$schema": "https://raw.githubusercontent.com/BohemianCoding/SketchAPI/develop/docs/sketch-plugin-manifest-schema.json",
   "icon": "icon.png",
   "homepage": "https://github.com/EricKramp/sketch-table-builder",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "scope": "document",
   "commands": [
     {
