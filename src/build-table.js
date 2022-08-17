@@ -72,7 +72,9 @@ function createTable() {
         newLayer.frame.y += newLayer.frame.height * row;
 
         // set the title value
-        newLayer.sketchObject.ensureDetachHasUpdated(); // This is a workaround for a bug in Sketch 91
+        if (sketch.version.sketch > 90) {
+          newLayer.sketchObject.ensureDetachHasUpdated(); // This is a workaround for a bug in Sketch 91
+        }
         newLayer.setOverrideValue(newLayer.overrides[0], label);
 
         // set the newLayer name which sets the export file name
