@@ -14,17 +14,17 @@ var selectedCount = selectedLayers.length;
 
 var csvData;
 
-var symbols = document.getSymbols();
-var typeSymbols = {};
+// var symbols = document.getSymbols();
+// var typeSymbols = {};
 
-// load all the symbols up into an object for easy reference
-// TODO need handling for duplicate symbol names generally, but not today
-symbols.forEach(symbol => {
-  typeSymbols[symbol.name] = {
-    symbolId: symbol.symbolId
-  };
-  console.log("found symbol: " + symbol.name);
-});
+// // load all the symbols up into an object for easy reference
+// // TODO need handling for duplicate symbol names generally, but not today
+// symbols.forEach(symbol => {
+//   typeSymbols[symbol.name] = {
+//     symbolId: symbol.symbolId
+//   };
+//   console.log("found symbol: " + symbol.name);
+// });
 
 console.log("pre file read");
 
@@ -44,7 +44,7 @@ function loadCSV() {
     })[0],
     "utf8"
   );
-  console.log("fileCnts: " + fileCnts);
+  // console.log("fileCnts: " + fileCnts);
 
   Papa.parse(fileCnts, {
     header: false,
@@ -59,9 +59,9 @@ function loadCSV() {
 function createTable() {
   // loop through CSV
   for (var row = 0; row < csvData.length; row++) {
-    console.log("row: " + row);
+    // console.log("row: " + row);
     for (var col = 0; col < csvData[row].length; col++) {
-      console.log(csvData[row][col]);
+      // console.log(csvData[row][col]);
       var label = csvData[row][col]; // change text label
 
       selectedLayers.forEach(function(layer) {
@@ -71,11 +71,22 @@ function createTable() {
         newLayer.frame.x += newLayer.frame.width * col;
         newLayer.frame.y += newLayer.frame.height * row;
 
-        // set the title value
-        if (sketch.version.sketch > 90) {
-          newLayer.sketchObject.ensureDetachHasUpdated(); // This is a workaround for a bug in Sketch 91
+        // sketch 94 introduces totally different overrides interaction
+        if (sketch.version.sketch > 94) {
+          newLayer.overrides.forEach(overrideable => {
+            if (overrideable.property === "stringValue") {
+              // console.log("OVERRIDE");
+              overrideable.value = label;
+            }
+          });
+        } else {
+          // set the title value
+          if (sketch.version.sketch > 90) {
+            newLayer.sketchObject.ensureDetachHasUpdated(); // This is a workaround for a bug in Sketch 91
+          }
+          // console.log("old sketch override");
+          newLayer.setOverrideValue(newLayer.overrides[0], label);
         }
-        newLayer.setOverrideValue(newLayer.overrides[0], label);
 
         // set the newLayer name which sets the export file name
         newLayer.name = label;
